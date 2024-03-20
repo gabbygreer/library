@@ -1,0 +1,24 @@
+.card{
+    border: 1rem solid pink;
+}
+
+#popup-div{
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-closed{
+    display: none;
+}
+.form-open{
+    display: flex;
+}
