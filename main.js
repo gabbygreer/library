@@ -38,38 +38,38 @@ function Book(title, author, numOfPages, haveRead) {
 
 
 
-//container to hold book cards
-const container = document.querySelector('.card-container');
+// //container to hold book cards
+// const container = document.querySelector('.card-container');
 
-//renders books from myLibrary to the DOM
-function renderLibrary() {
-    //loops through every element in array
-    myLibrary.forEach(book => {
-        //creating new elements and assigning them to variables
-        const div = document.createElement('div');
-        const bookTitle = document.createElement('h2');
-        const authorName = document.createElement('h4');
-        const pageCount = document.createElement('h4')
-        const alreadyRead = document.createElement('h4')
+// //renders books from myLibrary to the DOM
+// function renderLibrary() {
+//     //loops through every element in array
+//     myLibrary.forEach(book => {
+//         //creating new elements and assigning them to variables
+//         const div = document.createElement('div');
+//         const bookTitle = document.createElement('h2');
+//         const authorName = document.createElement('h4');
+//         const pageCount = document.createElement('h4')
+//         const alreadyRead = document.createElement('h4')
 
-        //adding class to newly created div container so it can be styled
-        div.classList = 'card'
+//         //adding class to newly created div container so it can be styled
+//         div.classList = 'card'
 
-        //populating the new elements with the property values from the objects in the myLibrary array
-        bookTitle.innerText = `${book.title}`;
-        authorName.innerText = `${book.author}`;
-        pageCount.innerText = `${book.numOfPages}`;
-        alreadyRead.innerText = `${book.haveRead}`
+//         //populating the new elements with the property values from the objects in the myLibrary array
+//         bookTitle.innerText = `${book.title}`;
+//         authorName.innerText = `${book.author}`;
+//         pageCount.innerText = `${book.numOfPages}`;
+//         alreadyRead.innerText = `${book.haveRead}`
 
-        //append these new elements to the new div element
-        div.appendChild(bookTitle);
-        div.appendChild(authorName);
-        div.appendChild(pageCount);
-        div.appendChild(alreadyRead);
-        //append the div element to the DOM
-        container.appendChild(div)
-    }) 
-};
+//         //append these new elements to the new div element
+//         div.appendChild(bookTitle);
+//         div.appendChild(authorName);
+//         div.appendChild(pageCount);
+//         div.appendChild(alreadyRead);
+//         //append the div element to the DOM
+//         container.appendChild(div)
+//     }) 
+// };
 
 
 //  pulls user input and creates a new Book and adds it to myLibrary array
