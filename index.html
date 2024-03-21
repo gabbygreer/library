@@ -10,10 +10,10 @@
     <h1>Library</h1>
     
 <!-- popup form -->
-   <button id="popup-button">Add Book</button>
+   <button id="open-button">Add Book</button>
 
-   <div id="popup-div" class="form-closed">
-    <form id="popup-form">
+   <dialog id="modal" class="popup-div">
+    <form id="popup-form" method="dialog">
         <label for="title">Book Title</label>
         <input type="text" id="title" name="title">
         <label for="author">Author</label>
@@ -22,10 +22,10 @@
         <input type="text" id="numOfPages" name="numOfPages">
         <label for="haveRead">Have Read</label>
         <input type="text" id="haveRead" name="haveRead">
-        <button type="reset">CANCEL</button>
-        <button type="submit">ADD BOOK</button>
+        <button type="reset" id="close-button">CANCEL</button>
+        <button type="submit" id="submit-button">ADD BOOK</button>
     </form>
-   </div>
+   </dialog>
     
 
     <div class="card-container"></div>

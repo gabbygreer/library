@@ -1,8 +1,10 @@
 //  VARIABLES
 const myLibrary = [];
-const newBookBtn = document.getElementById('popup-button');
 const formWindow = document.getElementById('popup-div');
 const form = document.getElementById('popup-form')
+const newBookModal = document.querySelector('#modal')
+const openModal = document.querySelector('#open-button');
+const closeModal = document.querySelector('#close-button');
 
 //  Book constructor function
 function Book(title, author, numOfPages, haveRead) {
@@ -62,6 +64,13 @@ addBookToLibrary(songOfSolomon);
 
 renderLibrary();
 
+//  POPUP FORM
+openModal.addEventListener('click', () => {
+    modal.showModal();
+});
+closeModal.addEventListener('click', () => {
+    modal.close();
+});
 
 //  SUBMIT EVENT LISTENER
 form.addEventListener('submit', (e) => {
@@ -71,25 +80,8 @@ form.addEventListener('submit', (e) => {
                             document.querySelector('#haveRead').value);
         
         myLibrary.push(newBook)
-        form.reset();
-        //prevents default form submit
-        e.preventDefault();  
-        renderBook(newBook)                   
+        e.preventDefault();  //prevents default form submit
+        renderBook(newBook)  
+        modal.close();                 
 }) 
 
-//Popup form start
-newBookBtn.addEventListener('click', function() {
-    formWindow.classList.toggle('form-open')
-    formWindow.classList.toggle('form-closed')
-});
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    formWindow.classList.toggle('form-open')
-    formWindow.classList.toggle('form-closed')
-});
-
-form.addEventListener('reset', function(){
-    formWindow.classList.toggle('form-open')
-    formWindow.classList.toggle('form-closed')
-})

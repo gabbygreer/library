@@ -2,7 +2,7 @@
     border: 1rem solid pink;
 }
 
-#popup-div{
+.popup-div{
     background-color: white;
     padding: 20px;
     border: 1px solid black;
@@ -14,11 +14,4 @@
     transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
-}
-
-.form-closed{
-    display: none;
-}
-.form-open{
-    display: flex;
 }
