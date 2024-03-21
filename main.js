@@ -1,6 +1,6 @@
 //  VARIABLES
 const myLibrary = [];
-const formWindow = document.getElementById('popup-div');
+const library = document.querySelector('.card-container')
 const form = document.getElementById('popup-form')
 const newBookModal = document.querySelector('#modal')
 const openModal = document.querySelector('#open-button');
@@ -35,6 +35,7 @@ function renderBook(book) {
     const pageCount = document.createElement('h4')
     const alreadyRead = document.createElement('h4')
     
+    
     //populating the new elements with the property values from the objects in the myLibrary array
     bookTitle.innerText = `${book.title}`;
     authorName.innerText = `${book.author}`;
@@ -48,6 +49,16 @@ function renderBook(book) {
     div.appendChild(alreadyRead);
     //append the div element to the DOM
     container.appendChild(div)
+
+    //  DELETE BUTTON   
+    const deleteBook = document.createElement('button');
+    deleteBook.innerText = 'Delete Book';
+    div.appendChild(deleteBook);
+    deleteBook.addEventListener('click', () => {
+        let bookIndex = myLibrary.indexOf(book);
+        myLibrary.splice(bookIndex, 1);
+        library.removeChild(library.children[bookIndex])
+    })
 };
 
 
