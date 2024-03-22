@@ -56,14 +56,14 @@ function renderBook(book) {
 
     const readLabel = document.createElement('label');
     readLabel.classList = 'read-label'
-    readLabel.for = 'read-unread';
+    readLabel.for = 'haveRead';
     readLabel.innerText = 'Read?';
     bookReadContainer.appendChild(readLabel);
 
     const readStatus = document.createElement('select');
     readStatus.classList = 'checkbox'
     readStatus.name = 'bookReadStatus';
-    readStatus.id = 'read-unread';
+    readStatus.id = 'haveRead';
     bookReadContainer.appendChild(readStatus);
 
     const readOption = document.createElement('option');
