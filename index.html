@@ -4,32 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belleza&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>Library</h1>
     
-<!-- popup form -->
-   <button id="open-button">Add Book</button>
+    <header>
+        <h1><img src="images/book-open.svg" alt="open book"> My Library</h1>
+        <div class="new-book-container">
+            <a id="open-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg> Add Book</a>
+        </div>
+    </header>
 
-   <dialog id="modal" class="popup-div">
-    <form id="popup-form" method="dialog">
-        <label for="title">Book Title</label>
-        <input type="text" id="title" name="title">
-        <label for="author">Author</label>
-        <input type="text" id="author" name="author">
-        <label for="numOfPages">Number of Pages</label>
-        <input type="text" id="numOfPages" name="numOfPages">
-        <label for="haveRead">Have Read</label>
-        <input type="text" id="haveRead" name="haveRead">
-        <button type="reset" id="close-button">CANCEL</button>
-        <button type="submit" id="submit-button">ADD BOOK</button>
-    </form>
-   </dialog>
+    <main>
+
+
+        <!-- popup form -->
+        <dialog id="modal" class="popup-div">
+        <h1 class="dialog-heading">Add a book to my library</h1>
+         <form id="popup-form" method="dialog">
+             <label for="title">Book Title:</label>
+             <input type="text" id="title" name="title">
+             <label for="author">Author:</label>
+             <input type="text" id="author" name="author">
+             <label for="numOfPages">Number of Pages:</label>
+             <input type="number" id="numOfPages" name="numOfPages">
+             <!-- <h4>Have you read it?</h4>
+             <select name="bookStatus" id="haveRead">
+                <option value="--">--</option>
+                <option class="read" value="read">Read</option>
+                <option value="unread">Not Read</option>
+             </select> -->
+             <div class="form-buttons">
+                <button type="reset" id="close-button">CANCEL</button>
+                <button type="submit" id="submit-button">ADD BOOK</button>
+             </div>
+         </form>
+        </dialog>
+
     
+         <div class="card-container"></div>
 
-    <div class="card-container"></div>
-
+    </main>
+    
     <script src="main.js"></script>
 </body>
 </html>

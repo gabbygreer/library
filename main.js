@@ -7,11 +7,12 @@ const openModal = document.querySelector('#open-button');
 const closeModal = document.querySelector('#close-button');
 
 //  Book constructor function
-function Book(title, author, numOfPages, haveRead) {
+function Book(title, author, numOfPages, haveRead, bookIndex) {
     this.title = title;
     this.author = author;
     this.numOfPages = numOfPages;
     this.haveRead = haveRead;
+    this.bookIndex = bookIndex;
     this.info = function info() {
         return `${title} by ${author}, ${numOfPages}, ${haveRead}`
     }
@@ -26,39 +27,74 @@ function addBookToLibrary(book) {
 function renderBook(book) {
     const container = document.querySelector('.card-container'); //container to hold book cards
 
-    //creating new elements and assigning them to variables
-    const div = document.createElement('div');
-    //adding class to newly created div container so it can be styled
-    div.classList = 'card'
-    const bookTitle = document.createElement('h2');
+    const bookDiv = document.createElement('div'); //creating card div that will hold book info
+    bookDiv.classList = 'book-card'; //adding class to newly created div container so it can be styled
+    container.appendChild(bookDiv); //append the div element to the DOM
+    
+    const bookTitle = document.createElement('h2'); //creating new elements and assigning them to variables
+    bookTitle.innerText = `${book.title}`; //populating the elements with the values from myLibrary
+    bookDiv.appendChild(bookTitle); //append new element to the new div element
+
     const authorName = document.createElement('h4');
-    const pageCount = document.createElement('h4')
-    const alreadyRead = document.createElement('h4')
-    
-    
-    //populating the new elements with the property values from the objects in the myLibrary array
-    bookTitle.innerText = `${book.title}`;
     authorName.innerText = `${book.author}`;
-    pageCount.innerText = `${book.numOfPages}`;
-    alreadyRead.innerText = `${book.haveRead}`;
-     
-    //append these new elements to the new div element
-    div.appendChild(bookTitle);
-    div.appendChild(authorName);
-    div.appendChild(pageCount);
-    div.appendChild(alreadyRead);
-    //append the div element to the DOM
-    container.appendChild(div)
+    bookDiv.appendChild(authorName);
+
+    const pageCount = document.createElement('h4');
+    pageCount.classList = 'numOfPages'
+    pageCount.innerText = `${book.numOfPages} pages`;
+    bookDiv.appendChild(pageCount);
+
+    //  BOOK ACTIONS
+    const actionContainer = document.createElement('div');
+    actionContainer.classList = 'card-action-container';
+    bookDiv.appendChild(actionContainer);
+
+    //  DROPDOWN
+    const bookReadContainer = document.createElement('div');
+    bookReadContainer.classList = 'book-read-container'
+    actionContainer.appendChild(bookReadContainer);
+
+    const readLabel = document.createElement('label');
+    readLabel.classList = 'read-label'
+    readLabel.for = 'read-unread';
+    readLabel.innerText = 'Read?';
+    bookReadContainer.appendChild(readLabel);
+
+    const readStatus = document.createElement('select');
+    readStatus.classList = 'checkbox'
+    readStatus.name = 'bookReadStatus';
+    readStatus.id = 'read-unread';
+    bookReadContainer.appendChild(readStatus);
+
+    const readOption = document.createElement('option');
+    readOption.innerText = 'Read'
+    readOption.value = 'read';
+    readStatus.appendChild(readOption);
+
+    const unreadOption = document.createElement('option');
+    unreadOption.innerText = 'To Be Read'
+    unreadOption.value = 'unread';
+    readStatus.appendChild(unreadOption);
+
+
+
+    //
 
     //  DELETE BUTTON   
-    const deleteBook = document.createElement('button');
-    deleteBook.innerText = 'Delete Book';
-    div.appendChild(deleteBook);
+    const deleteBook = document.createElement('a');
+    actionContainer.appendChild(deleteBook);
+
+    const trashIcon = document.createElement('img');
+    trashIcon.classList = 'trash'
+    trashIcon.src = 'images/trash-icon.svg'
+    deleteBook.appendChild(trashIcon);
+
     deleteBook.addEventListener('click', () => {
         let bookIndex = myLibrary.indexOf(book);
         myLibrary.splice(bookIndex, 1);
         library.removeChild(library.children[bookIndex])
     })
+    //
 };
 
 
@@ -68,8 +104,8 @@ function renderLibrary(book) {  //  Loops through myLibrary and runs renderBook 
     }
 }
 
-const brokenHarbor = new Book('Broken Harbor', 'French, Tana', 450, "Read");
-const songOfSolomon = new Book('Song of Solomon', 'Morrison, Toni', 337, "Read");
+const brokenHarbor = new Book('Broken Harbor', 'Tana French', 450, "Read", 1);
+const songOfSolomon = new Book('Song of Solomon', 'Toni Morrison', 337, "Read", 2);
 addBookToLibrary(brokenHarbor);
 addBookToLibrary(songOfSolomon);
 
@@ -88,11 +124,13 @@ form.addEventListener('submit', (e) => {
     const newBook = new Book(document.querySelector('#title').value, 
                             document.querySelector('#author').value,
                             document.querySelector('#numOfPages').value, 
-                            document.querySelector('#haveRead').value);
-        
+                            document.querySelector('#haveRead').value,
+                            document.querySelectorAll('.book-card').length + 1);
+
         myLibrary.push(newBook)
         e.preventDefault();  //prevents default form submit
-        renderBook(newBook)  
-        modal.close();                 
+        renderBook(newBook);
+        modal.close();      
+        form.reset();         
 }) 
 
