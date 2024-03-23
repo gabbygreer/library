@@ -1,89 +1,93 @@
 const myLibrary = [];
-const form = document.querySelector('#popup-form')
-const openModal = document.querySelector('#open-button').addEventListener('click', () => {modal.showModal();});
-const closeModal = document.querySelector('#close-button').addEventListener('click', () => {modal.close();
-                                                                                            form.reset()});
+const form = document.querySelector('form')
+
+document.querySelector('#new-book-button').addEventListener('click', () => {modal.showModal();});
+document.querySelector('#close-button').addEventListener('click', () => {modal.close(); form.reset()});
 
 
-class Book {
-    constructor(title, author, numOfPages, read){
+function Book(title, author, numOfPages, read){
         this.title = title,
         this.author = author,
         this.numOfPages = numOfPages,
         this.read = read;
     }
-    toggleRead(book) {
-        this.read = !this.read
-    }
+
+Book.prototype.toggleRead = function() {
+    this.read = !this.read;
 }
 
-const title = document.querySelector('#title');
-const author = document.querySelector('#author');
-const numOfPages = document.querySelector('#numOfPages');
-const read = document.querySelector('#bookStatus');
-    
 function addBookToLibrary(book) {
-    const newBook = new Book(title.value, author.value, numOfPages.value, read.checked)
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const numOfPages = document.querySelector('#numOfPages').value;
+    const read = document.querySelector('#bookStatus').checked;
+
+    let newBook = new Book(title, author, numOfPages, read);
+
     myLibrary.push(newBook)
+
+    renderBookCard();
 }
-    
-function renderBookCard(book) {
+     
+function renderBookCard() {
 
-        const container = document.querySelector('.card-container');
+    const container = document.querySelector('.card-container');
+    container.innerHTML = ""; //prevents duplication
 
+    myLibrary.forEach(book => {
+       
         const bookCard = document.createElement('div');
         bookCard.classList = 'book-card';
         container.appendChild(bookCard); 
         
         const bookTitle = document.createElement('h2');
+        bookTitle.classList = 'book-title'
         bookCard.appendChild(bookTitle);
-        bookTitle.textContent = title.value; 
+        bookTitle.textContent = `${book.title}`; 
 
         const authorName = document.createElement('h4');
+        authorName.classList = 'author-name'
         bookCard.appendChild(authorName); 
-        authorName.textContent = author.value;
+        authorName.textContent = `By ${book.author}`;
 
         const pageCount = document.createElement('h5');
+        pageCount.classList = 'page-count'
         bookCard.appendChild(pageCount); 
-        pageCount.textContent = numOfPages.value; 
+        pageCount.textContent = `${book.numOfPages} pages`; 
 
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList = 'card-actions';
-        bookCard.appendChild(buttonContainer);
-
-        const readStatusButton = document.createElement('a');
-        readStatusButton.class = 'read-status';
-        buttonContainer.appendChild(readStatusButton);
-        if(read === false){
-            readStatusButton.textContent = 'Not Read';
-            readStatusButton.classList = 'not-read';
-        }else {
-            readStatusButton.textContent = 'Read';
-            readStatusButton.classList = 'read'
+        const readStatusButton = document.createElement('button');
+        readStatusButton.classList = 'read-status';
+        bookCard.appendChild(readStatusButton);
+        if(book.read === true){
+            readStatusButton.textContent = 'READ';
+            readStatusButton.classList.add('read-book');
+        }else{
+            readStatusButton.textContent = "NOT READ"
+            readStatusButton.classList.add('not-read')
         }
+         readStatusButton.addEventListener('click', toggleRead);
+         function toggleRead() {
+            book.toggleRead();
+            renderBookCard();
+        } 
 
-        const deleteBookButton = document.createElement('a');
-        deleteBookButton.class = 'delete-button';
-        buttonContainer.appendChild(deleteBookButton);
-        deleteBookButton.textContent = "DELETE";
-
-        // //  associates the book object and the book card
-        // bookCard.dataset.index = myLibrary.indexOf(book)
-       
-        deleteBookButton.addEventListener('click', () => {
-            myLibrary.splice(myLibrary.indexOf(book), 1);
-            bookCard.remove();
-        });    
-};
-
+         const deleteBookButton = document.createElement('button');
+         deleteBookButton.classList = 'delete-button';
+         bookCard.appendChild(deleteBookButton);
+         deleteBookButton.textContent = "DELETE"; 
+         deleteBookButton.addEventListener('click', deleteBook)
+     
+    });
+    function deleteBook(index) {
+        myLibrary.splice(index, 1);
+        renderBookCard();
+    }
+}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();  
     addBookToLibrary();
-    renderBookCard();
     modal.close();
     form.reset();       
 }) 
 
-let emma = new Book('Emma', 'Jane Austen', 450, true);
-myLibrary.push(emma);

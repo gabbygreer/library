@@ -7,56 +7,35 @@ body{
 }
 
 header{
-    font-size: 2rem;
+    margin: 0;
     padding: 1rem;
     background-color: #2a9d8f;
-    margin: 0;
     box-shadow: 0px 5px 5px rgb(42, 41, 41);
-    display: flex;
-    justify-content: space-between;
-   align-items: center;
+    font-size: 2rem;
+    text-align: center;
 }
 
 header img{
-    width: 4rem;
+    width: 5rem;
     vertical-align: middle;
-}
-
-h1{
-    margin: 0;
-}
-
-#open-button {
-    cursor: pointer;
-    background-color: #e76f51;
-    padding: 1rem;
-    border-radius: 5rem;
-    font-size: 1.5rem;
-    box-shadow: 0px 3px 3px rgb(42, 41, 41);
-    vertical-align: middle;
-}
-
-#open-button svg{
-    width: 2.5rem;
-    vertical-align: middle;
-    fill: white;
 }
 
 /* POPUP WINDOW */
-.popup-div{
+.popup-dialog{
     margin: 0;
     padding: 0;
-    border: 5px solid #2a9d8f;
+    border: 5px solid #e76f51;
     width: 25rem;
     height: fit-content;
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(-30%, -40%);
     border-radius: 30px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.dialog-heading{
+.form-heading{
+    margin: 0;
     padding: 1rem;
     background-color: #264653;
     color: white;
@@ -69,6 +48,8 @@ form {
     flex-direction: column;
     padding: 1rem;
 }
+
+
 form > label {
     padding-top: 1rem;
     padding-left: 2rem;
@@ -79,7 +60,14 @@ form > input {
     width: 300px;
     align-self: center;
 }
+.checkbox-div{
+    padding: 1rem;
+    padding-left: 2rem;
+}
 
+.checkbox-label{
+    padding-right: 1rem;
+}
 
 .form-buttons {
     padding: 1rem;
@@ -87,16 +75,14 @@ form > input {
     display: flex;
     justify-content: space-around;
 }
-button {
-    cursor: pointer;
+
+form button{
     background-color: #e76f51;
-    border-radius: 30px;
+    border: none;
     color: white;
     padding: 1rem;
-    border: none;
-    box-shadow: 5px 5px 5px rgb(204, 204, 204);
+    border-radius: 30px;
 }
-
 
 /* MAIN BODY */
 
@@ -105,16 +91,31 @@ main{
 }
 
 .card-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 2rem;
-    margin: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
-.new-book-container{
-    justify-self: center;
-    align-self: center;
-    padding: 2rem;
+
+#new-book-button {
+    background-color: #e76f51;
+    color: white;
+    padding: 1rem;
+    margin: 1rem 1rem 0 0;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    box-shadow: 0px 3px 3px rgb(42, 41, 41);
+    vertical-align: middle;
+    width: 12rem;
+    height: 4.5rem;
+    justify-self: end;
+    grid-column: span all;
+}
+
+#new-book-button svg{
+    width: 2rem;
+    vertical-align: middle;
+    fill: white;
 }
 
 .book-card{
@@ -123,57 +124,67 @@ main{
     box-shadow: 5px 5px 5px rgb(42, 41, 41);
     display: grid;
     grid-template-rows: auto 1fr 1fr;
+    margin: 1rem;
+    width: 20%;
+    min-width: 18rem;
 }
 
 .book-card h2 {
     margin: 0;
     padding: 0;
-    background-color: #e5b846;
+    background-color: #ebb631;
     padding: 1rem;
     text-align: center;
     color: white;
     font-size: 1.2rem;
 }
 
-.book-card h4 {
+.author-name {
     font-weight: 500;
     margin: 0;
     padding: .5rem;
     color: rgb(89, 89, 89);
 }
 
-.numOfPages{
-    font-size: .8rem;
-}
-
-.book-read-container {
-    padding: 1rem;
-    /* display: flex; */
-    justify-content: center;
-    align-items: center;
+.page-count{
     margin: 0;
-    color: white;
-    align-self: flex-end;
-    display: flex;
+    font-size: .9rem;
+    padding-left: .5rem;
+    font-weight: 500;
+    color: rgb(89, 89, 89);
+
 }
 
-.read-label {
-    padding-right: 1rem;
-}
-
-.card-actions {
-    background-color: #e76f51;
-    justify-content: space-between;
-    align-items: center;
+.read-status{
+    margin: 0;
+    height: 2.5rem;
     font-size: 1.5rem;
-    display: flex;
+    vertical-align: middle;
+    border: none;
+    color: white;
 }
 
-.card-actions a {
-    cursor: pointer;
+.delete-button{
+    margin: 0;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    vertical-align: middle;
+    background-color: #e76f51 ;
+    color: white;
+    border: none;
 }
 
-.trash {
+.read-book{
+    background-color:#2a9d8f;
+}
+
+.not-read{
+    background-color: gray;
+}
+
+
+
+/* .trash {
     width: 2rem;
     padding-right: 1rem;
-}
+} */
